@@ -1,0 +1,8 @@
+*.pem
+*.odt
+*.tfstate.*
+*.tfstate
+*.zip
+*.txt
+*.lock.hcl
+*.terraform/*
