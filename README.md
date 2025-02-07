@@ -79,12 +79,8 @@ WantedBy=multi-user.target
    ## Root device Size Increase Code
 
   - df -h (Command to check root_device storage)
-   ```
-    root_block_device {
-    volume_size = 20
-  }
-  ```
-   - reboot the system with command **reboot**
+  - Add Code to EC2 instace file for increasing root device value 
+  - reboot the system with command **reboot**
  
 
 
