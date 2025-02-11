@@ -5,13 +5,6 @@ resource "aws_security_group" "web_sg"{
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_sonar" {
-  security_group_id = aws_security_group.web_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 9000
-  ip_protocol       = "tcp"
-  to_port           = 9000
-}
 
 # resource "aws_vpc_security_group_ingress_rule" "allow_80" {
 #   security_group_id = aws_security_group.web_sg.id
@@ -64,3 +57,29 @@ resource "aws_eip" "bar" {
   }
 
 }
+
+/*resource "aws_vpc_security_group_ingress_rule" "allow_sonar" {
+  security_group_id = aws_security_group.web_sg.id
+
+   
+  cidr_ipv4        = var.thinkpad_ip
+  from_port         = 9000
+  ip_protocol       = "tcp"
+  to_port           = 9000
+}*/
+
+resource "aws_vpc_security_group_ingress_rule" "allow_sonar" {
+  security_group_id = aws_security_group.web_sg.id
+
+   for_each = toset(var.thinkpad_ip)
+  cidr_ipv4        = each.value
+  from_port         = 9000
+  ip_protocol       = "tcp"
+  to_port           = 9000
+  
+tags = {
+    Name = "${each.value}-cidr"
+  }
+  
+}
+

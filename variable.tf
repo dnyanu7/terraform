@@ -21,3 +21,9 @@ variable "instance_type" {
 variable "ami" {
   default = "ami-04b4f1a9cf54c11d0"
 }
+variable "thinkpad_ip" {
+  type = list(string)
+  default = ["103.133.230.45/32", "152.57.92.229/32"]
+  
+}
+
